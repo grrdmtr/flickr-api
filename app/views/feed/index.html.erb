@@ -1,0 +1,13 @@
+<h1>Feed#index</h1>
+
+<%= form_with(url: "/", local: true, method: "get") do |form| %>
+  <p>Enter a flickr id to see photos</p>
+  <%= form.text_field :user_id %>
+  <%= form.submit "Search" %>
+<% end %>
+<br>
+<% unless @photos.size.zero? %>
+  <% @photos.each do |photo| %>
+    <%= link_to(image_tag(Flickr.url_q(photo)), Flickr.url_photopage(photo)) %>
+  <% end %>  
+<% end %>
